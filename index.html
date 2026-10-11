@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An aggressively decorated happy birthday page for Keine.">
+    <title>HAPPY BIRTHDAY, Keine!!!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="confetti" aria-hidden="true"></div>
+    <div class="party-lights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+
+    <main class="page-shell">
+        <div class="surrounding-balloons" aria-hidden="true">
+            <div class="balloon-row">
+                <span class="balloon lesbian-orange-dark">♥</span><span class="balloon lesbian-orange">★</span><span
+                    class="balloon lesbian-orange-light">!</span><span class="balloon lesbian-white">◆</span><span
+                    class="balloon lesbian-pink">♥</span><span class="balloon lesbian-rose">★</span><span
+                    class="balloon lesbian-red">♥</span>
+            </div>
+        </div>
+        <header class="hero card-shake">
+            <div class="burst burst-left" aria-hidden="true">WOW</div>
+            <div class="burst burst-right" aria-hidden="true">YAY</div>
+            <p class="eyebrow">★ 30TH BIRTHDAY ANNOUCEMENT ★</p>
+            <h1>HAPPY<br><span>BIRTHDAY</span><br></h1>
+            <h1><em><img class="avatar" src="assets/friend_avatar.jpg" alt=""> KEINE </em> !!!</h1>
+            <div class="cake-wrap"><img class="cake" src="assets/birthday_cake.gif" alt="Animated birthday cake"></div>
+            <div class="meme-cloud" aria-label="Birthday memes">
+                <figure class="meme meme-a"><img src="assets/duck_meme_1.webp" alt="Animated duck birthday meme">
+                </figure>
+                <figure class="meme meme-b"><img src="assets/duck_meme_2.png" alt="Duck meme one"></figure>
+                <figure class="meme meme-c"><img src="assets/duck_meme_3.png" alt="Duck meme two"></figure>
+                <figure class="meme meme-d"><img src="assets/duck_meme_4.jpg" alt="Duck meme three"></figure>
+                <figure class="meme meme-e"><img src="assets/duck_meme_5.gif" alt="Animated duck meme two"></figure>
+                <figure class="meme meme-f"><img src="assets/duck_meme_6.jpg" alt="Duck meme four"></figure>
+                <figure class="meme meme-g"><img src="assets/ntf_meme.jpg" alt="NFT birthday meme"></figure>
+                <figure class="meme meme-h"><img src="assets/ntf_meme_2.jpg" alt="NFT birthday meme two"></figure>
+            </div>
+        </header>
+
+        <section class="message-board tilted-left">
+            <div class="tape tape-one" aria-hidden="true"></div>
+            <p class="sticker">FROM DUCKY:</p>
+            <h2>Keine is older but still funny.</h2>(<i>hopefully</i>)
+            <p>May your indomies stay stocked, your reaction videos stay funny, and you get to witness Namtan propose to Film.</p>
+            <p class="big-wish">Go out and have <span>real food</span> on your birthday bro!</p>
+        </section>
+
+        <audio id="birthday-audio" autoplay loop preload="auto" playsinline aria-label="Birthday music">
+            <source src="assets/sound_track.mp3" type="audio/mpeg">
+        </audio>
+
+        <footer>Made with love and matcha by Ducky da best. 
+            <br>Please view this on desktop because I don't have time for mobile.</footer>
+    </main>
+
+    <script>
+        const themes = [ 'theme-punch', 'theme-electric', 'theme-lime', 'theme-sunset', 'theme-candy' ];
+        let themeIndex = 0;
+        const root = document.documentElement;
+        const audio = document.querySelector( '#birthday-audio' );
+
+        function setTheme() {
+            root.classList.remove( ...themes );
+            themeIndex = ( themeIndex + 1 ) % themes.length;
+            root.classList.add( themes[ themeIndex ] );
+        }
+
+        audio.play().catch( () => { } );
+        document.addEventListener( 'pointerdown', () => audio.play().catch( () => { } ), { once: true } );
+
+        const confetti = document.querySelector( '.confetti' );
+        for ( let i = 0; i < 52; i += 1 ) {
+            const piece = document.createElement( 'i' );
+            piece.style.setProperty( '--x', `${Math.random() * 100}vw` );
+            piece.style.setProperty( '--delay', `${Math.random() * -8}s` );
+            piece.style.setProperty( '--duration', `${4 + Math.random() * 5}s` );
+            piece.style.setProperty( '--hue', `${Math.floor( Math.random() * 360 )}` );
+            piece.className = i % 3 === 0 ? 'confetti-dot' : 'confetti-piece';
+            confetti.append( piece );
+        }
+
+        setInterval( setTheme, 15000 );
+    </script>
+</body>
+
+</html>

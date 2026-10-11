@@ -1,0 +1,779 @@
+:root {
+    --ink: #271044;
+    --paper: #fff6a8;
+    --hot: #ff2f92;
+    --cyan: #00e5ff;
+    --yellow: #ffe600;
+    --green: #7cff00;
+    --purple: #8c4dff;
+    --orange: #ff7417;
+    --shadow: 8px 8px 0 var(--ink);
+    --theme-a: #ff6fb5;
+    --theme-b: #70f5ff;
+    --theme-c: #fff36b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: var(--theme-a);
+    transition: background 1s ease;
+}
+
+body {
+    min-width: 320px;
+    margin: 0;
+    overflow-x: hidden;
+    color: var(--ink);
+    font-family: "Arial Black", Impact, system-ui, sans-serif;
+    background:
+        radial-gradient(circle at 10% 20%, var(--theme-c) 0 2%, transparent 2.5%),
+        radial-gradient(circle at 90% 70%, var(--theme-b) 0 3%, transparent 3.5%),
+        repeating-linear-gradient(125deg, transparent 0 28px, rgba(255, 255, 255, .22) 29px 34px),
+        var(--theme-a);
+    transition: background 1s ease;
+}
+
+.theme-electric {
+    --theme-a: #57e7ff;
+    --theme-b: #ff55bf;
+    --theme-c: #bdff00;
+}
+
+.theme-lime {
+    --theme-a: #baff00;
+    --theme-b: #ff8bd8;
+    --theme-c: #00e5ff;
+}
+
+.theme-sunset {
+    --theme-a: #ff8a25;
+    --theme-b: #ff3b81;
+    --theme-c: #fff200;
+}
+
+.theme-candy {
+    --theme-a: #c78cff;
+    --theme-b: #5affd5;
+    --theme-c: #ffef57;
+}
+
+button,
+audio {
+    font: inherit;
+}
+
+.page-shell {
+    width: min(1050px, calc(100% - 28px));
+    margin: 0 auto;
+    padding: 68px 0 25px;
+    position: relative;
+}
+
+.card-shake {
+    animation: cardShake 4s ease-in-out infinite;
+}
+
+.surrounding-balloons {
+    position: absolute;
+    z-index: 4;
+    top: 18px;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+.surrounding-balloons .balloon-row {
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.hero {
+    z-index: 1;
+    min-height: 545px;
+    position: relative;
+    overflow: visible;
+    padding: 55px 26px 35px;
+    text-align: center;
+    border: 7px solid var(--ink);
+    border-radius: 38px 14px 48px 20px;
+    background: var(--paper);
+    box-shadow: 14px 15px 0 var(--ink), inset 0 0 0 8px var(--hot);
+}
+
+.hero::before,
+.hero::after {
+    content: "✦ ★ ✦ ★ ✦";
+    position: absolute;
+    color: var(--hot);
+    font-size: 28px;
+    letter-spacing: 18px;
+    animation: ticker 8s linear infinite;
+}
+
+.hero::before {
+    left: -25px;
+    top: 12px;
+    transform: rotate(-5deg);
+}
+
+.hero::after {
+    right: -35px;
+    bottom: 14px;
+    color: var(--purple);
+    transform: rotate(4deg);
+}
+
+.eyebrow,
+.sticker,
+.section-heading span {
+    display: inline-block;
+    margin: 0;
+    padding: 9px 16px;
+    color: var(--paper);
+    background: var(--hot);
+    border: 4px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    transform: rotate(-2deg);
+}
+
+.eyebrow {
+    font-size: clamp(.7rem, 2vw, 1rem);
+    animation: pulse 1s infinite alternate;
+}
+
+h1 {
+    max-width: 800px;
+    margin: 18px auto 5px;
+    font-size: clamp(3.4rem, 11vw, 8.6rem);
+    line-height: .78;
+    letter-spacing: -7px;
+    text-shadow: 7px 7px 0 var(--cyan), 12px 12px 0 var(--hot);
+    transform: rotate(-2deg);
+}
+
+h1 span {
+    color: var(--hot);
+    -webkit-text-stroke: 3px var(--ink);
+}
+
+h1 em {
+    display: inline-block;
+    color: var(--purple);
+    font-size: .45em;
+    line-height: 1.15;
+    letter-spacing: -2px;
+    -webkit-text-stroke: 2px var(--ink);
+    transform: rotate(3deg);
+}
+
+h3 {
+    max-width: 600px;
+    margin: 12px auto 5px;
+    font-size: clamp(3.4rem, 11vw, 8.6rem);
+    line-height: .78;
+    letter-spacing: -7px;
+    text-shadow: 7px 7px 0 var(--cyan), 12px 12px 0 var(--hot);
+    transform: rotate(-2deg);
+}
+
+h3 span {
+    color: var(--hot);
+    -webkit-text-stroke: 3px var(--ink);
+}
+
+h3 em {
+    display: inline-block;
+    color: var(--purple);
+    font-size: .6em;
+    line-height: 1.15;
+    letter-spacing: -2px;
+    -webkit-text-stroke: 2px var(--ink);
+    transform: rotate(3deg);
+    align-content: center;
+}
+
+.hero-subtitle {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 8px 14px;
+    font-family: system-ui, sans-serif;
+    font-weight: 900;
+    font-size: 1.05rem;
+    background: var(--cyan);
+    border: 4px solid var(--ink);
+    transform: rotate(2deg);
+}
+
+.top-party {
+    display: none;
+}
+
+.balloon-row {
+    display: flex;
+    justify-content: center;
+    gap: clamp(4px, 2vw, 18px);
+    margin: 0;
+}
+
+.balloon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 62px;
+    color: white;
+    font-size: 25px;
+    border: 4px solid var(--ink);
+    border-radius: 52% 48% 50% 50%;
+    box-shadow: inset -7px -8px 0 rgba(0, 0, 0, .14);
+    animation: bob 1.6s ease-in-out infinite alternate;
+}
+
+.lesbian-orange-dark { background: #d52d00; }
+.lesbian-orange { background: #ef7627; }
+.lesbian-orange-light { background: #ff9a56; }
+.lesbian-white { color: var(--ink); background: #fff; }
+.lesbian-pink { background: #d162a4; }
+.lesbian-rose { background: #b55690; }
+.lesbian-red { background: #a30262; }
+
+.cake-wrap {
+    width: 200px;
+    margin: 16px auto 0;
+    filter: drop-shadow(8px 8px 0 var(--ink));
+}
+
+.cake {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: rotate(7deg);
+}
+
+h1 em {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--purple);
+    font-size: .45em;
+    line-height: 1.15;
+    letter-spacing: -2px;
+    -webkit-text-stroke: 2px var(--ink);
+    transform: rotate(3deg);
+}
+
+.avatar {
+    position: static;
+    width: 78px;
+    height: 78px;
+    object-fit: cover;
+    border: 5px solid var(--ink);
+    border-radius: 50%;
+    box-shadow: 5px 5px 0 var(--hot);
+    animation: avatarSpin 6s linear infinite;
+    -webkit-text-stroke: 0;
+}
+
+.burst {
+    position: absolute;
+    z-index: 2;
+    padding: 14px 10px;
+    color: var(--ink);
+    background: var(--yellow);
+    border: 5px solid var(--ink);
+    clip-path: polygon(50% 0, 61% 27%, 86% 7%, 76% 35%, 100% 50%, 72% 59%, 91% 86%, 62% 73%, 50% 100%, 38% 73%, 9% 86%, 28% 59%, 0 50%, 24% 35%, 14% 7%, 39% 27%);
+    animation: spin 9s linear infinite;
+}
+
+.burst-left {
+    top: 90px;
+    left: 18px;
+}
+
+.burst-right {
+    top: 78px;
+    right: 18px;
+    background: var(--cyan);
+}
+
+.message-board {
+    position: relative;
+    max-width: 800px;
+    margin: 68px auto 0;
+    padding: 34px clamp(22px, 6vw, 65px);
+    border: 6px solid var(--ink);
+    box-shadow: var(--shadow);
+    background: #fff;
+    transform: rotate(-1.5deg);
+}
+
+.tape {
+    position: absolute;
+    top: -21px;
+    left: 40%;
+    width: 160px;
+    height: 42px;
+    background: rgba(255, 230, 0, .82);
+    border: 2px solid rgba(39, 16, 68, .35);
+    transform: rotate(-4deg);
+}
+
+.message-board h2 {
+    margin: 16px 0 10px;
+    font-size: clamp(1.45rem, 4vw, 2.8rem);
+    line-height: 1;
+}
+
+.message-board p:not(.sticker) {
+    font: 800 1.12rem/1.45 system-ui, sans-serif;
+}
+
+.big-wish {
+    padding: 12px;
+    color: white;
+    background: var(--purple);
+    border: 4px solid var(--ink);
+    transform: rotate(2deg);
+}
+
+.big-wish span {
+    color: var(--yellow);
+}
+
+.meme-cloud {
+    position: absolute;
+    inset: -45px -125px -50px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.meme {
+    position: absolute;
+    width: 173px;
+    margin: 0;
+    padding: 6px 6px 9px;
+    background: white;
+    border: 4px solid var(--ink);
+    box-shadow: 5px 6px 0 var(--ink);
+    pointer-events: auto;
+    animation: memeFloat 2.7s ease-in-out infinite alternate;
+}
+
+.meme-a {
+    top: 3%;
+    left: 2%;
+    transform: rotate(-9deg);
+}
+
+.meme-b {
+    top: 10%;
+    right: 3%;
+    transform: rotate(8deg);
+    animation-delay: -.7s;
+}
+
+.meme-c {
+    top: 65%;
+    right: -24px;
+    transform: rotate(-6deg);
+    animation-delay: -1.3s;
+}
+
+.meme-d {
+    bottom: -28px;
+    right: 24%;
+    transform: rotate(7deg);
+    animation-delay: -1.9s;
+}
+
+.meme-e {
+    bottom: -30px;
+    left: 24%;
+    transform: rotate(5deg);
+    animation-delay: -.4s;
+}
+
+.meme-f {
+    top: 75%;
+    left: -24px;
+    transform: rotate(-6deg);
+    animation-delay: -1.1s;
+}
+
+.meme-g {
+    top: 40%;
+    left: -70px;
+    width: 274px;
+    transform: rotate(-8deg);
+    animation-delay: -.9s;
+}
+
+.meme-h {
+    top: 38%;
+    right: -70px;
+    width: 228px;
+    transform: rotate(8deg);
+    animation-delay: -1.6s;
+}
+
+.meme:nth-child(2n) {
+    background: var(--cyan);
+}
+
+.meme:nth-child(3n) {
+    background: var(--yellow);
+}
+
+.meme:nth-child(4n) {
+    background: var(--hot);
+}
+
+.meme img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    background: white;
+    border: 3px solid var(--ink);
+    filter: saturate(1.4) contrast(1.1);
+    transition: transform .25s ease, filter .25s ease;
+}
+
+.meme:hover img {
+    transform: scale(1.08) rotate(-4deg);
+    filter: saturate(2) contrast(1.2);
+}
+
+.meme figcaption {
+    margin-top: 5px;
+    text-align: center;
+    font: 900 .55rem/1.1 system-ui, sans-serif;
+    text-transform: uppercase;
+}
+
+audio {
+    display: none;
+}
+
+footer {
+    padding: 55px 10px 10px;
+    text-align: center;
+    font: 900 .8rem system-ui, sans-serif;
+}
+
+.party-lights {
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: none;
+}
+
+.party-lights::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 110%;
+    border-top: 5px solid var(--ink);
+    transform: rotate(2deg);
+}
+
+.party-lights i {
+    width: 22px;
+    height: 32px;
+    margin-top: 8px;
+    border: 3px solid var(--ink);
+    border-radius: 45%;
+    background: var(--hot);
+    box-shadow: 0 0 18px currentColor;
+    animation: lightBlink .8s infinite alternate;
+}
+
+.party-lights i:nth-child(2n) {
+    background: var(--cyan);
+    animation-delay: -.2s;
+}
+
+.party-lights i:nth-child(3n) {
+    background: var(--yellow);
+    animation-delay: -.4s;
+}
+
+.party-lights i:nth-child(4n) {
+    background: var(--green);
+    animation-delay: -.6s;
+}
+
+.confetti {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti i {
+    position: absolute;
+    left: var(--x);
+    top: -30px;
+    background: hsl(var(--hue) 100% 50%);
+    animation: fall var(--duration) linear var(--delay) infinite;
+}
+
+.confetti-piece {
+    width: 12px;
+    height: 23px;
+    transform: rotate(35deg);
+}
+
+.confetti-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+}
+
+@keyframes fall {
+    to {
+        top: 110vh;
+        transform: translateX(100px) rotate(720deg);
+    }
+}
+
+@keyframes cardShake {
+
+    0%,
+    92%,
+    100% {
+        transform: rotate(0);
+    }
+
+    94% {
+        transform: rotate(-1deg);
+    }
+
+    96% {
+        transform: rotate(1deg);
+    }
+}
+
+@keyframes ticker {
+    to {
+        translate: 80px;
+    }
+}
+
+@keyframes pulse {
+    to {
+        transform: scale(1.08) rotate(3deg);
+    }
+}
+
+@keyframes bob {
+    to {
+        translate: 0 -13px;
+        rotate: 4deg;
+    }
+}
+
+@keyframes avatarSpin {
+
+    0%,
+    88% {
+        rotate: 0;
+    }
+
+    92% {
+        rotate: -12deg;
+    }
+
+    96% {
+        rotate: 12deg;
+    }
+
+    100% {
+        rotate: 0;
+    }
+}
+
+@keyframes cakeHop {
+    to {
+        translate: 0 -13px;
+        rotate: -3deg;
+    }
+}
+
+@keyframes spin {
+    to {
+        rotate: 360deg;
+    }
+}
+
+@keyframes memeFloat {
+    to {
+        translate: 0 -9px;
+    }
+}
+
+@keyframes noteDance {
+    to {
+        rotate: 15deg;
+        scale: 1.15;
+    }
+}
+
+@keyframes lightBlink {
+    to {
+        filter: brightness(1.8);
+    }
+}
+
+@media (max-width: 700px) {
+    .page-shell {
+        padding-top: 52px;
+    }
+
+    .hero {
+        min-height: 520px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .top-party {
+        min-height: 105px;
+        gap: 8px;
+        margin-top: -20px;
+    }
+
+    .balloon-row {
+        gap: 3px;
+    }
+
+    .balloon {
+        width: 35px;
+        height: 47px;
+        font-size: 18px;
+        border-width: 3px;
+    }
+
+    .cake-wrap {
+        width: 145px;
+    }
+
+    .meme-cloud {
+        inset: -32px -38px;
+    }
+
+    .meme {
+        width: 82px;
+        padding: 4px;
+    }
+
+    .meme-g,
+    .meme-h {
+        width: 115px;
+    }
+
+    .meme img {
+        height: auto;
+        border-width: 2px;
+    }
+
+    .meme-a {
+        top: 5%;
+        left: -5px;
+    }
+
+    .meme-b {
+        top: 25%;
+        right: -8px;
+    }
+
+    .meme-c {
+        bottom: 25%;
+        right: -8px;
+    }
+
+    .meme-d {
+        bottom: 5%;
+        right: 15%;
+    }
+
+    .meme-e {
+        bottom: 5%;
+        left: 15%;
+    }
+
+    .meme-f {
+        top: 25%;
+        left: -8px;
+    }
+
+    .meme-g {
+        top: 43%;
+        left: -8px;
+    }
+
+    .meme-h {
+        top: 43%;
+        right: -8px;
+    }
+
+    .burst {
+        display: none;
+    }
+
+    h1 {
+        letter-spacing: -4px;
+    }
+
+    .avatar {
+        width: 52px;
+        height: 52px;
+        border-width: 3px;
+    }
+
+    .message-board {
+        margin-top: 55px;
+    }
+
+    .meme-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .music-card {
+        display: block;
+        text-align: center;
+    }
+
+    .music-note {
+        line-height: .8;
+    }
+
+    .music-card audio {
+        width: 100%;
+        margin: 20px 0 0;
+    }
+
+    .music-card button {
+        margin-top: 15px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
