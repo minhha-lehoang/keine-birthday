@@ -265,6 +265,26 @@ h1 em {
     transform: rotate(3deg);
 }
 
+.avatar-click-target {
+    position: relative;
+    z-index: 0;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.avatar-click-target::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 5px -5px -5px 5px;
+    border-radius: 50%;
+    background: var(--hot);
+}
+
+.avatar-click-target.is-click-spinning .avatar {
+    animation: avatarSpin 6s linear infinite, avatarClickSpin 15s linear;
+}
+
 .avatar {
     position: static;
     width: 78px;
@@ -272,7 +292,6 @@ h1 em {
     object-fit: cover;
     border: 5px solid var(--ink);
     border-radius: 50%;
-    box-shadow: 5px 5px 0 var(--hot);
     animation: avatarSpin 6s linear infinite;
     -webkit-text-stroke: 0;
 }
@@ -599,6 +618,12 @@ footer {
 
     100% {
         rotate: 0;
+    }
+}
+
+@keyframes avatarClickSpin {
+    to {
+        rotate: 3600deg;
     }
 }
 

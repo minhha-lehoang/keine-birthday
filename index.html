@@ -28,7 +28,7 @@
             <div class="burst burst-right" aria-hidden="true">YAY</div>
             <p class="eyebrow">★ 30TH BIRTHDAY ANNOUCEMENT ★</p>
             <h1>HAPPY<br><span>BIRTHDAY</span><br></h1>
-            <h1><em><img class="avatar" src="assets/friend_avatar.jpg" alt=""> KEINE </em> !!!</h1>
+            <h1><em><span class="avatar-click-target" role="button" tabindex="0" aria-label="Spin Keine's avatar"><img class="avatar" src="assets/friend_avatar.jpg" alt=""> </span>KEINE </em> !!!</h1>
             <div class="cake-wrap"><img class="cake" src="assets/birthday_cake.gif" alt="Animated birthday cake"></div>
             <div class="meme-cloud" aria-label="Birthday memes">
                 <figure class="meme meme-a"><img src="assets/duck_meme_1.webp" alt="Animated duck birthday meme">
@@ -84,6 +84,25 @@
             piece.className = i % 3 === 0 ? 'confetti-dot' : 'confetti-piece';
             confetti.append( piece );
         }
+
+        const avatarClickTarget = document.querySelector( '.avatar-click-target' );
+
+        function spinAvatar() {
+            avatarClickTarget.classList.remove( 'is-click-spinning' );
+            void avatarClickTarget.offsetWidth;
+            avatarClickTarget.classList.add( 'is-click-spinning' );
+        }
+
+        avatarClickTarget.addEventListener( 'click', spinAvatar );
+        avatarClickTarget.addEventListener( 'keydown', ( event ) => {
+            if ( event.key === 'Enter' || event.key === ' ' ) {
+                event.preventDefault();
+                spinAvatar();
+            }
+        } );
+        avatarClickTarget.addEventListener( 'animationend', () => {
+            avatarClickTarget.classList.remove( 'is-click-spinning' );
+        } );
 
         setInterval( setTheme, 15000 );
     </script>
